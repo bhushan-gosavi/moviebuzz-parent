@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +39,12 @@ public class MovieController
     public List<MovieEntity> getMovies()
     {
         return movies;
+    }
+
+    @RequestMapping("/movies/{movieId}")
+    public MovieEntity getMovie(@PathVariable UUID movieId)
+    {
+        return movie1;
     }
 
 }
