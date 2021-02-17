@@ -4,12 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MoviebuzzApiApplication
+public class MovieBuzzApiApplication
 {
 
     public static void main(String[] args)
     {
-        SpringApplication.run(MoviebuzzApiApplication.class, args);
+        SpringApplication.run(MovieBuzzApiApplication.class, args);
     }
 
 }

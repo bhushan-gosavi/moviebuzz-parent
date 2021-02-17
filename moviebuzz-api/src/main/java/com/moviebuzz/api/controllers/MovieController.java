@@ -5,10 +5,13 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RefreshScope
 @RestController
 public class MovieController
 {
@@ -35,6 +38,10 @@ public class MovieController
 
     private List<MovieEntity> movies = Arrays.asList(movie1, movie2);
 
+    @Value("${my.name}")
+    private String name;
+
+
     @RequestMapping("/movies")
     public List<MovieEntity> getMovies()
     {
@@ -45,6 +52,12 @@ public class MovieController
     public MovieEntity getMovie(@PathVariable UUID movieId)
     {
         return movie1;
+    }
+
+    @RequestMapping("/name")
+    public String getMovie()
+    {
+        return name;
     }
 
 }

@@ -12,4 +12,4 @@ RUN chmod +x /opt/run.sh
 
 ENTRYPOINT "/opt/run.sh"
 
-EXPOSE 8080
+EXPOSE 8081
