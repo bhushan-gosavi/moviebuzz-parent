@@ -1,0 +1,1 @@
+exec java -jar /opt/app.jar

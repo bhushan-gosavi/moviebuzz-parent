@@ -1,0 +1,17 @@
+api:
+  packaging:
+    add:
+      - target/dependency/moviebuzz-api.jar
+  ports:
+    - 8081 8080
+
+  healthChecks:
+    pings:
+      - url: http://localhost:8081/actuator/health
+        timeout: 60000
+  tag: bgosavi/moviebuzz-integration_api:${project.version}
+
+consul:
+  ports:
+    - 8500 8500
+    - 8600 8600
