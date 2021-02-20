@@ -7,3 +7,28 @@ server:
     context-path: /moviebuzz
 
 my.name: Bhushan
+
+
+cassandra:
+  host: cassandra
+  port: 9042
+  creds:
+    username: ""
+    password: ""
+  cluster:
+    name: "Test Cluster"
+    generateSchema: true
+    connections:
+      pooling:
+        local:
+          core: 5
+          max: 10
+          maxConnectionsPerHost: 3
+        remote:
+          core: 5
+          max: 10
+          maxConnectionsPerHost: 3
+  keyspace:
+    name: moviebuzz
+    readConsistency: LOCAL_QUORUM
+    writeConsistency: LOCAL_QUORUM

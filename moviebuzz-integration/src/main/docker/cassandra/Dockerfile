@@ -1,0 +1,2 @@
+FROM cassandra:3.9
+EXPOSE 9042

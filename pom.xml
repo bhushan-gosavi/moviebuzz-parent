@@ -24,6 +24,8 @@
 		<release.number>SNAPSHOT</release.number>
 		<java.version>1.8</java.version>
 		<consul.version>2.2.3.RELEASE</consul.version>
+		<achilles.version>6.0.1</achilles.version>
+		<cassandra.driver>3.6.0</cassandra.driver>
 	</properties>
 
 	<dependencies>
@@ -42,6 +44,43 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.archinnov</groupId>
+			<artifactId>achilles-core</artifactId>
+			<version>${achilles.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>info.archinnov</groupId>
+			<artifactId>achilles-junit</artifactId>
+			<version>${achilles.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+			<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-consul-all</artifactId>
+			<version>${consul.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-core</artifactId>
+			<version>${cassandra.driver}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.datastax.cassandra</groupId>
+			<artifactId>cassandra-driver-extras</artifactId>
+			<version>${cassandra.driver}</version>
 		</dependency>
 
 	</dependencies>
