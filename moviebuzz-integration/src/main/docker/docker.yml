@@ -1,3 +1,13 @@
+cassandra:
+  ports:
+    - 7000 7000
+    - 9042 9042
+
+  healthChecks:
+    logPatterns:
+      - pattern: Starting listening for CQL clients
+        timeout: 1000000
+
 consul:
   ports:
     - 8500 8500
@@ -7,6 +17,10 @@ initializer:
   privileged: true
   links:
     - consul
+  healthChecks:
+    logPatterns:
+      - pattern: Container Initialization Complete!
+        timeout: 100000
 
 api:
   packaging:
@@ -18,7 +32,8 @@ api:
   healthChecks:
     pings:
       - url: http://localhost:8081/moviebuzz/actuator/health
-        timeout: 60000
+        timeout: 90000
   tag: bgosavi/moviebuzz-integration_api:${project.version}
   links:
     - consul
+    - cassandra

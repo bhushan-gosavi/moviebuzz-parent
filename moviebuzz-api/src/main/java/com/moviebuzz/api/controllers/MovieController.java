@@ -1,14 +1,15 @@
 package com.moviebuzz.api.controllers;
 
-import com.moviebuzz.database.models.MovieEntity;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import com.moviebuzz.database.cassandra.models.MovieEntity;
+import info.archinnov.achilles.generated.manager.MovieEntity_Manager;
 import java.util.UUID;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RefreshScope
@@ -16,48 +17,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class MovieController
 {
 
-    MovieEntity movie1 =
-        MovieEntity.builder()
-            .uuid(UUID.randomUUID())
-            .name("ddlj")
-            .actors(Arrays.asList("Shahrukh", "Kajol"))
-            .averageRating(3.5f)
-            .releasedDate(new Date())
-            .description("best movie")
-            .build();
+    @Autowired
+    private MovieEntity_Manager movieEntityManager;
 
-    MovieEntity movie2 =
-        MovieEntity.builder()
-            .uuid(UUID.randomUUID())
-            .name("kkhh")
-            .actors(Arrays.asList("Shahrukh", "kajol", "rani"))
-            .averageRating(4.5f)
-            .releasedDate(new Date())
-            .description("good movie")
-            .build();
-
-    private List<MovieEntity> movies = Arrays.asList(movie1, movie2);
-
-    @Value("${my.name}")
-    private String name;
-
-
-    @RequestMapping("/movies")
-    public List<MovieEntity> getMovies()
-    {
-        return movies;
-    }
 
     @RequestMapping("/movies/{movieId}")
     public MovieEntity getMovie(@PathVariable UUID movieId)
     {
-        return movie1;
+        return movieEntityManager.crud().findById(movieId).get();
     }
 
-    @RequestMapping("/name")
-    public String getMovie()
+
+    @RequestMapping(method = RequestMethod.POST, path = "/movies")
+    public ResponseEntity addMovie(@RequestBody MovieEntity movie)
     {
-        return name;
+        movieEntityManager.crud().insert(movie).execute();
+        return ResponseEntity.ok().body("Created: " + movie.getUuid());
     }
 
 }
