@@ -6,9 +6,6 @@ server:
   servlet:
     context-path: /moviebuzz
 
-my.name: Bhushan
-
-
 cassandra:
   host: cassandra
   port: 9042
