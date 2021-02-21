@@ -1,0 +1,32 @@
+{
+  "mappings":
+  {
+    "movies":
+    {
+      "properties":
+      {
+        "uuid": {
+          "type": "keyword"
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "actors": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        },
+        "averageRating": {
+          "type": "float"
+        }
+      }
+    }
+  }
+}

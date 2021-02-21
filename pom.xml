@@ -5,7 +5,8 @@
 	<modules>
 		<module>moviebuzz-api</module>
 		<module>moviebuzz-database</module>
-	</modules>
+    <module>moviebuzz-application</module>
+  </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -26,6 +27,7 @@
 		<consul.version>2.2.3.RELEASE</consul.version>
 		<achilles.version>6.0.1</achilles.version>
 		<cassandra.driver>3.6.0</cassandra.driver>
+		<elasticsearch.version>5.6.7</elasticsearch.version>
 	</properties>
 
 	<dependencies>
@@ -82,6 +84,26 @@
 			<artifactId>cassandra-driver-extras</artifactId>
 			<version>${cassandra.driver}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>${elasticsearch.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-high-level-client -->
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
+			<version>${elasticsearch.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>transport</artifactId>
+			<version>${elasticsearch.version}</version>
+		</dependency>
+
 
 	</dependencies>
 
