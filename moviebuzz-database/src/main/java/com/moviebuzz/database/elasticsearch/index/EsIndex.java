@@ -1,10 +1,12 @@
-package com.moviebuzz.database.elasticsearch.mapping;
+package com.moviebuzz.database.elasticsearch.index;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Builder
+@ToString
 public class EsIndex
 {
     private String index;
