@@ -4,6 +4,7 @@ RUN apk add --update curl && rm -rf /var/cache/apk/*
 
 ADD initialize.sh /
 ADD moviebuzz-api-develop.yml /
+ADD es-movies-mapping.json /
 
 RUN chmod +x /initialize.sh
 

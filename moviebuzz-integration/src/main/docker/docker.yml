@@ -1,3 +1,19 @@
+elasticsearch:
+  env: {
+    "network.publish_host":"127.0.0.1",
+    "transport.host":"0.0.0.0",
+    "ES_JAVA_OPTS": "-Xms512m -Xmx512m"
+  }
+  ports:
+    - 9200 9200
+    - 9300 9300
+
+  healthChecks:
+    logPatterns:
+      - pattern: started
+        timeout: 100000
+  exposeContainerIp: true
+
 cassandra:
   ports:
     - 7000 7000
@@ -17,6 +33,7 @@ initializer:
   privileged: true
   links:
     - consul
+    - elasticsearch
   healthChecks:
     logPatterns:
       - pattern: Container Initialization Complete!
@@ -32,8 +49,9 @@ api:
   healthChecks:
     pings:
       - url: http://localhost:8081/moviebuzz/actuator/health
-        timeout: 90000
+        timeout: 100000
   tag: bgosavi/moviebuzz-integration_api:${project.version}
   links:
     - consul
     - cassandra
+    - elasticsearch
