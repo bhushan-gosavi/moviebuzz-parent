@@ -32,7 +32,7 @@
       <build>
         <plugins>
 
-          <!-- alexecollins plugin to build and run docker images -->
+          <!-- alexecollins plugin to build docker images and run docker containers -->
           <plugin>
             <groupId>com.alexecollins.docker</groupId>
             <artifactId>docker-maven-plugin</artifactId>
