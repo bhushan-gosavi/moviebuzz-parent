@@ -12,19 +12,21 @@
           "type": "text",
           "fields": {
             "keyword": {
-              "type": "keyword",
-              "ignore_above": 256
+              "type": "keyword"
             }
           }
         },
-        "actors": {
-          "type": "text"
-        },
-        "description": {
-          "type": "text"
+        "isBookingActive": {
+          "type": "true"
         },
         "averageRating": {
           "type": "float"
+        },
+        "released": {
+          "type": "date"
+        },
+        "imageUrl": {
+          "type": "text"
         }
       }
     }

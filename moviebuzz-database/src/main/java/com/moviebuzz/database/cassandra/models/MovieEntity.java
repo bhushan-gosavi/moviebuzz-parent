@@ -1,6 +1,11 @@
 package com.moviebuzz.database.cassandra.models;
 
+import com.moviebuzz.database.cassandra.enums.Language;
+import com.moviebuzz.database.cassandra.enums.MovieGenres;
+import com.moviebuzz.database.cassandra.models.udt.Person;
 import info.archinnov.achilles.annotations.Column;
+import info.archinnov.achilles.annotations.Enumerated;
+import info.archinnov.achilles.annotations.Frozen;
 import info.archinnov.achilles.annotations.PartitionKey;
 import info.archinnov.achilles.annotations.Table;
 import java.util.Date;
@@ -30,19 +35,27 @@ public class MovieEntity
     private String name;
 
     @Column
-    private Set<String> actors;
+    private String description;
 
     @Column
     private Date releasedDate;
 
     @Column
-    private String description;
+    private Boolean isBookingActive;
 
     @Column
-    private Float averageRating;
+    private Set<@Frozen Person> actors;
 
     @Column
-    private Integer likes;
+    private Set<@Frozen Person> crew;
 
+    @Column
+    private Set<@Enumerated MovieGenres> genres;
+
+    @Column
+    private Set<@Enumerated Language> languages;
+
+    @Column
+    private String certificate;
 
 }

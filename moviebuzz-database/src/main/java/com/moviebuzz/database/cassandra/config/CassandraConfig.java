@@ -117,7 +117,7 @@ public class CassandraConfig
             .builder(getCluster())
             .doForceSchemaCreation(generateSchema)
             .withDefaultKeyspaceName(keyspaceName)
-            .validateSchema(false)
+            .validateSchema(true)
             .withDefaultReadConsistency(ConsistencyLevel.valueOf(readConsistency))
             .withDefaultWriteConsistency(ConsistencyLevel.valueOf(writeConsistency))
             .build();

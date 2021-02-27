@@ -4,7 +4,6 @@ package com.moviebuzz.database.cassandra.config;
 import info.archinnov.achilles.generated.ManagerFactory;
 import info.archinnov.achilles.generated.manager.MovieEntity_Manager;
 import info.archinnov.achilles.generated.manager.UserEntity_Manager;
-import info.archinnov.achilles.generated.manager.UserRatingEntity_Manager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -36,9 +35,4 @@ public class ManagerFactoryConfig
         return managerFactory.forUserEntity();
     }
 
-    @Bean
-    public UserRatingEntity_Manager getUserRatingManager()
-    {
-        return managerFactory.forUserRatingEntity();
-    }
 }
