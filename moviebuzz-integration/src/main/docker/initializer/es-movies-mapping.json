@@ -17,7 +17,7 @@
           }
         },
         "isBookingActive": {
-          "type": "true"
+          "type": "boolean"
         },
         "averageRating": {
           "type": "float"
