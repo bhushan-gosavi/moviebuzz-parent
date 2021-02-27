@@ -9,13 +9,19 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>moviebuzz-application</artifactId>
+  <artifactId>moviebuzz-processor</artifactId>
 
   <dependencies>
 
     <dependency>
       <groupId>com.moviebuzz</groupId>
       <artifactId>moviebuzz-database</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.moviebuzz</groupId>
+      <artifactId>moviebuzz-kafka</artifactId>
       <version>${project.version}</version>
     </dependency>
 
