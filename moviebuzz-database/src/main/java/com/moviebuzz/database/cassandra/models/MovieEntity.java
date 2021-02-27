@@ -41,4 +41,8 @@ public class MovieEntity
     @Column
     private Float averageRating;
 
+    @Column
+    private Integer likes;
+
+
 }

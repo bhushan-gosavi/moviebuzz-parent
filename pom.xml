@@ -5,8 +5,9 @@
 	<modules>
 		<module>moviebuzz-api</module>
 		<module>moviebuzz-database</module>
-    <module>moviebuzz-application</module>
-  </modules>
+    <module>moviebuzz-processor</module>
+		<module>moviebuzz-kafka</module>
+	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -28,6 +29,7 @@
 		<achilles.version>6.0.1</achilles.version>
 		<cassandra.driver>3.6.0</cassandra.driver>
 		<elasticsearch.version>5.6.7</elasticsearch.version>
+		<kafka.version>2.6.1</kafka.version>
 	</properties>
 
 	<dependencies>
@@ -102,6 +104,20 @@
 			<groupId>org.elasticsearch.client</groupId>
 			<artifactId>transport</artifactId>
 			<version>${elasticsearch.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+			<version>${kafka.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>${kafka.version}</version>
 		</dependency>
 
 

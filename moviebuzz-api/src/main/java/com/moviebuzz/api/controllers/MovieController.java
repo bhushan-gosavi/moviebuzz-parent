@@ -5,6 +5,8 @@ import com.moviebuzz.database.cassandra.models.MovieEntity;
 import com.moviebuzz.database.elasticsearch.index.EsIndexMapping;
 import com.moviebuzz.database.elasticsearch.index.EsIndexMapping.MovieBuzzIndex;
 import com.moviebuzz.database.elasticsearch.service.ElasticsearchService;
+import com.moviebuzz.kafka.constant.Constants;
+import com.moviebuzz.kafka.model.BookingConfirmation;
 import info.archinnov.achilles.generated.manager.MovieEntity_Manager;
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +18,9 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +40,25 @@ public class MovieController
     @Autowired
     private Client client;
 
+    @Autowired
+    private KafkaTemplate<String, Object> kafkaTemplate;
+
 
     @Autowired
     private ElasticsearchService elasticsearchService;
+
+
+    @RequestMapping("/publish")
+    public String publish() throws ExecutionException, InterruptedException {
+        BookingConfirmation confirmation = new BookingConfirmation();
+        confirmation.setCustomerId(UUID.randomUUID());
+        confirmation.setMovieId(UUID.randomUUID());
+        confirmation.setMovieName("Dil Diwana He");
+        confirmation.setCustomerName("Vivek");
+        ListenableFuture<SendResult<String, Object>> future =
+                kafkaTemplate.send(Constants.BOOKING_CONFIRMATION, UUID.randomUUID().toString(), confirmation);
+        return future.get().toString();
+    }
 
     @RequestMapping("/movies/{movieId}")
     public MovieEntity getMovie(@PathVariable UUID movieId)
