@@ -38,7 +38,7 @@ public class MovieEntity
     private String description;
 
     @Column
-    private Date releasedDate;
+    private Date released;
 
     @Column
     private Boolean isBookingActive;
@@ -56,6 +56,22 @@ public class MovieEntity
     private Set<@Enumerated Language> languages;
 
     @Column
+    private String imageUrl;
+
+    @Column
     private String certificate;
+
+
+
+    public static UUID generateUUID(String movieName, Date released)
+    {
+        return UUID.nameUUIDFromBytes((movieName + released.toString()).getBytes());
+    }
+
+    public void setMovieUUID()
+    {
+        uuid = generateUUID(name, released);
+    }
+
 
 }

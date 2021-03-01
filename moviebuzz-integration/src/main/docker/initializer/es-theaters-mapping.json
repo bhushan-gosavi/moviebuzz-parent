@@ -25,14 +25,25 @@
             }
           }
         },
-        "address": {
-          "type": "text"
-        },
         "location": {
           "type": "geo_point"
         },
         "activeMovies": {
-          "type": "keyword"
+          "type": "nested",
+          "include_in_parent": true,
+          "properties": {
+            "uuid": {
+              "type": "keyword"
+            },
+            "name": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword"
+                }
+              }
+            }
+          }
         }
       }
     }

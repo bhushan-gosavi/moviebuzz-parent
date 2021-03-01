@@ -6,6 +6,7 @@ import info.archinnov.achilles.annotations.Column;
 import info.archinnov.achilles.annotations.Frozen;
 import info.archinnov.achilles.annotations.PartitionKey;
 import info.archinnov.achilles.annotations.Table;
+import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -41,6 +42,16 @@ public class TheatreEntity
     private @Frozen Location location;
 
     @Column
-    private Set<@Frozen Movie> movies;
+    private Set<@Frozen Movie> activeMovies;
+
+    public static UUID generateUUID(String city, String theaterName)
+    {
+        return UUID.nameUUIDFromBytes((city + "-" + theaterName).getBytes());
+    }
+
+    public void setTheaterUUID()
+    {
+        uuid = generateUUID(city, name);
+    }
 
 }

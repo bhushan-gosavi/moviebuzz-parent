@@ -3,7 +3,11 @@ package com.moviebuzz.database.cassandra.config;
 
 import info.archinnov.achilles.generated.ManagerFactory;
 import info.archinnov.achilles.generated.manager.MovieEntity_Manager;
+import info.archinnov.achilles.generated.manager.MovieRatingEntity_Manager;
+import info.archinnov.achilles.generated.manager.TheatreEntity_Manager;
+import info.archinnov.achilles.generated.manager.UserBookings_Manager;
 import info.archinnov.achilles.generated.manager.UserEntity_Manager;
+import info.archinnov.achilles.generated.manager.UserReviewsEntity_Manager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -33,6 +37,32 @@ public class ManagerFactoryConfig
     public UserEntity_Manager getUserManager()
     {
         return managerFactory.forUserEntity();
+    }
+
+    @Bean
+    public TheatreEntity_Manager getTheatreManager()
+    {
+        return managerFactory.forTheatreEntity();
+    }
+
+    @Bean
+    public MovieRatingEntity_Manager getMovieRatingManager()
+    {
+        return managerFactory.forMovieRatingEntity();
+    }
+
+
+    @Bean
+    public UserBookings_Manager getUserBookingsManager()
+    {
+        return managerFactory.forUserBookings();
+    }
+
+
+    @Bean
+    public UserReviewsEntity_Manager getUserReviewsManager()
+    {
+        return managerFactory.forUserReviewsEntity();
     }
 
 }

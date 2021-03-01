@@ -7,12 +7,14 @@ public class EsIndexMapping
 {
     public enum MovieBuzzIndex
     {
-        MOVIES
+        MOVIES,
+        THEATERS
     }
 
     private static Map<MovieBuzzIndex, EsIndex> indexMap = ImmutableMap.<MovieBuzzIndex, EsIndex>builder()
-        .put(MovieBuzzIndex.MOVIES, EsIndex.builder().index("moviebuzz_movies").type("movies").build())
-        .build();
+            .put(MovieBuzzIndex.MOVIES, EsIndex.builder().index("moviebuzz_movies").type("movies").build())
+            .put(MovieBuzzIndex.THEATERS, EsIndex.builder().index("moviebuzz_theaters").type("theaters").build())
+            .build();
 
 
     public static EsIndex getIndex(MovieBuzzIndex index)

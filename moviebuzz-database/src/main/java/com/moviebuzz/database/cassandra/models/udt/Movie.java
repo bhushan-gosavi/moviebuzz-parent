@@ -10,7 +10,7 @@ import lombok.Data;
 public class Movie
 {
     @Column
-    UUID movieId;
+    UUID uuid;
 
     @Column
     String name;

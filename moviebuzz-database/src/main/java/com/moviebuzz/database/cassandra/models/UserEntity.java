@@ -3,6 +3,7 @@ package com.moviebuzz.database.cassandra.models;
 import info.archinnov.achilles.annotations.Column;
 import info.archinnov.achilles.annotations.PartitionKey;
 import info.archinnov.achilles.annotations.Table;
+import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,5 +34,15 @@ public class UserEntity
 
     @Column
     private Long mobileNumber;
+
+    public static UUID generateUUID(String email)
+    {
+        return UUID.nameUUIDFromBytes(email.getBytes());
+    }
+
+    public void setUserUUID()
+    {
+        uuid = generateUUID(email);
+    }
 
 }

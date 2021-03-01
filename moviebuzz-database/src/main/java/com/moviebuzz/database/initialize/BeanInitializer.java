@@ -1,4 +1,4 @@
-package com.moviebuzz.database.elasticsearch;
+package com.moviebuzz.database.initialize;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
