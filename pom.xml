@@ -5,7 +5,6 @@
 	<modules>
 		<module>moviebuzz-api</module>
 		<module>moviebuzz-database</module>
-    <module>moviebuzz-processor</module>
 		<module>moviebuzz-kafka</module>
 	</modules>
 	<parent>
