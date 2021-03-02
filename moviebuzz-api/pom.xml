@@ -9,9 +9,9 @@
 	</parent>
 
 	<artifactId>moviebuzz-api</artifactId>
-
 	<name>moviebuzz-api</name>
 	<description>API support for Moviebuzz</description>
+
 	<properties>
 		<java.version>1.8</java.version>
 		<springdoc.version>1.5.2</springdoc.version>
