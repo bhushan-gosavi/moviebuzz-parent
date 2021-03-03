@@ -20,7 +20,7 @@ public class KafkaConsumerConfig
     @Value("${kafka.topics.bookingConfirmation.consumerThreads}")
     private Integer bookingConfirmationConsumerThreads;
 
-    @Value("${kafka.topics.userReview.consumerThreads}")
+    @Value("${kafka.topics.userReviews.consumerThreads}")
     private Integer userReviewConsumerThreads;
 
     @Bean

@@ -20,6 +20,12 @@
       <version>${project.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.moviebuzz</groupId>
+      <artifactId>moviebuzz-process</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
   </dependencies>
 
 
