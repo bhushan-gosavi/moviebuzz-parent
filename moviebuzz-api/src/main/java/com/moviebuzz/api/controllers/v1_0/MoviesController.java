@@ -1,6 +1,7 @@
 package com.moviebuzz.api.controllers.v1_0;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.moviebuzz.api.requests.model.MovieCreateRequest;
 import com.moviebuzz.database.cassandra.models.MovieEntity;
 import com.moviebuzz.database.elasticsearch.models.EsMovieMapping;
 import com.moviebuzz.database.service.MovieService;
@@ -64,7 +65,7 @@ public class MoviesController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/movies")
-    public ResponseEntity addMovie(@RequestBody MovieEntity movie)
+    public ResponseEntity addMovie(@RequestBody MovieCreateRequest movie)
             throws JsonProcessingException, ExecutionException, InterruptedException {
         log.info("Adding movie in db MovieName: {}", movie.getName());
         try {
@@ -84,17 +85,18 @@ public class MoviesController {
     @RequestMapping(path = "/movies", method = RequestMethod.GET)
     public ResponseEntity getMovies(@RequestParam(required = false) Integer from,
                                     @RequestParam(required = false) Integer size,
-                                    @RequestParam(required = true) Boolean isBookingActive) {
+                                    @RequestParam(required = true) Boolean isBookingActive,
+                                    @RequestParam(required = true) String city) {
         try {
             List<EsMovieMapping> movies = null;
 
             if(isBookingActive)
             {
-                movies = movieService.getAllActiveMoviesByReleasedDate(from, size);
+                movies = movieService.getAllActiveMoviesByReleasedDate(from, size, city);
             }
             else
             {
-                movies = movieService.getAllMoviesByReleasedDate(from, size);
+                movies = movieService.getAllMoviesByReleasedDate(from, size, city);
             }
 
             return ResponseEntity.ok(movies);
@@ -106,12 +108,13 @@ public class MoviesController {
     }
 
     @RequestMapping(path = "/movies/name/{movieName}", method = RequestMethod.GET)
-    public ResponseEntity getMoviesByName(@PathVariable String movieName)
+    public ResponseEntity getMoviesByName(@PathVariable String movieName,
+                                          @RequestParam(required = true) String city)
     {
         log.info("Get movie by name: {}", movieName);
 
         try {
-            List<EsMovieMapping> movies = movieService.getAllMoviesByName(movieName);
+            List<EsMovieMapping> movies = movieService.getAllMoviesByName(movieName, city);
             return ResponseEntity.ok(movies);
         } catch (Exception exception) {
             log.error("Unable to fetch movie from ElasticSearch by Name: {}",movieName, exception);

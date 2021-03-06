@@ -24,6 +24,9 @@
         },
         "imageUrl": {
           "type": "text"
+        },
+        "runningCities": {
+          "type": "keyword"
         }
       }
     }

@@ -1,6 +1,7 @@
 package com.moviebuzz.database.elasticsearch.models;
 
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 import lombok.Data;
 
@@ -12,4 +13,5 @@ public class EsMovieMapping
     private Boolean isBookingActive;
     private Date released;
     private String imageUrl;
+    private Set<String> runningCities;
 }

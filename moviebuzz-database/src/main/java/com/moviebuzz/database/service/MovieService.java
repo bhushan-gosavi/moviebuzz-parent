@@ -43,25 +43,27 @@ public class MovieService
                 EsIndexMapping.getIndex(MovieBuzzIndex.MOVIES));
     }
 
-    public List<EsMovieMapping> getAllMoviesByReleasedDate(Integer from, Integer size)
+    public List<EsMovieMapping> getAllMoviesByReleasedDate(Integer from, Integer size, String city)
     {
         return elasticsearchService.getAllDocs(EsIndexMapping.getIndex(MovieBuzzIndex.MOVIES),
-                null, null, null,
-                from, size, "released", SortOrder.DESC, EsMovieMapping.class);
+                null, Collections.singletonMap("runningCities", Collections.singletonList(city)),
+            null, from, size, "released", SortOrder.DESC, EsMovieMapping.class);
     }
 
 
-    public List<EsMovieMapping> getAllActiveMoviesByReleasedDate(Integer from, Integer size)
+    public List<EsMovieMapping> getAllActiveMoviesByReleasedDate(Integer from, Integer size, String city)
     {
         return elasticsearchService.getAllDocs(EsIndexMapping.getIndex(MovieBuzzIndex.MOVIES),
-                Collections.singletonMap("isBookingActive", true), null, null,
+                Collections.singletonMap("isBookingActive", true),
+            Collections.singletonMap("runningCities", Collections.singletonList(city)), null,
                 from, size, "released", SortOrder.DESC, EsMovieMapping.class);
     }
 
-    public List<EsMovieMapping> getAllMoviesByName(String name)
+    public List<EsMovieMapping> getAllMoviesByName(String name, String city)
     {
         return elasticsearchService.getAllDocs(EsIndexMapping.getIndex(MovieBuzzIndex.MOVIES),
-                Collections.singletonMap("name", name), null, null,
+                Collections.singletonMap("name", name),
+            Collections.singletonMap("runningCities", Collections.singletonList(city)), null,
                 null, null, "released", SortOrder.DESC, EsMovieMapping.class);
     }
 
