@@ -4,6 +4,7 @@ import info.archinnov.achilles.annotations.ClusteringColumn;
 import info.archinnov.achilles.annotations.Column;
 import info.archinnov.achilles.annotations.PartitionKey;
 import info.archinnov.achilles.annotations.Table;
+import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(keyspace = "moviebuzz", table = "user_bookings")
-public class UserBookings
+public class UserBookingEntity
 {
     @PartitionKey
     private UUID userId;
@@ -45,5 +46,8 @@ public class UserBookings
 
     @Column
     private Set<String> seats;
+
+    @Column
+    private Date showTime;
 
 }

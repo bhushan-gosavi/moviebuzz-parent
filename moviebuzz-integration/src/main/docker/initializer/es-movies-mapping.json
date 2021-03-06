@@ -19,9 +19,6 @@
         "isBookingActive": {
           "type": "boolean"
         },
-        "averageRating": {
-          "type": "float"
-        },
         "released": {
           "type": "date"
         },

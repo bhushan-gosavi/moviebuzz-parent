@@ -10,7 +10,6 @@ public class EsMovieMapping
     private UUID uuid;
     private String name;
     private Boolean isBookingActive;
-    public Float averageRating;
     private Date released;
     private String imageUrl;
 }

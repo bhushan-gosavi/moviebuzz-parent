@@ -57,6 +57,11 @@ elasticsearch:
     name: "moviebuzz-cluster"
 
 
+cache:
+  movieRatings:
+    size: 500
+    expireAfterHours: 1
+
 
 logging:
   level:

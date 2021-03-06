@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.moviebuzz.database.cassandra.models.MovieEntity;
 import com.moviebuzz.database.elasticsearch.models.EsMovieMapping;
 import com.moviebuzz.database.service.MovieService;
+import com.moviebuzz.database.service.RatingService;
 import com.moviebuzz.kafka.constant.Constants;
 import com.moviebuzz.kafka.model.BookingConfirmation;
 import java.util.List;
@@ -26,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
-@RefreshScope
 @RestController("Movies_Controller")
 @RequestMapping("/v1.0")
 public class MoviesController {
@@ -35,20 +35,7 @@ public class MoviesController {
     private MovieService movieService;
 
     @Autowired
-    private KafkaTemplate<String, Object> kafkaTemplate;
-
-
-    @RequestMapping(value = "/publish", method = RequestMethod.GET)
-    public String publish() throws ExecutionException, InterruptedException {
-        BookingConfirmation confirmation = new BookingConfirmation();
-        confirmation.setCustomerId(UUID.randomUUID());
-        confirmation.setMovieId(UUID.randomUUID());
-        confirmation.setMovieName("Dil Diwana He");
-        confirmation.setCustomerName("Vivek");
-        ListenableFuture<SendResult<String, Object>> future =
-                kafkaTemplate.send(Constants.BOOKING_CONFIRMATION, UUID.randomUUID().toString(), confirmation);
-        return future.get().toString();
-    }
+    private RatingService ratingService;
 
     @RequestMapping(value = "/movies/{movieId}", method = RequestMethod.GET)
     public ResponseEntity getMovie(@PathVariable UUID movieId) {
@@ -60,6 +47,19 @@ public class MoviesController {
             log.error("Unable to fetch movie from Cassandra UUID: {}", movieId, exception);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Unable to fetch movie details: " + movieId.toString());
+        }
+    }
+
+    @RequestMapping(value = "/movies/{movieId}/rating", method = RequestMethod.GET)
+    public ResponseEntity getMovieRating(@PathVariable UUID movieId) {
+        log.info("Get movie by id: {}", movieId);
+        try {
+            Long rating = ratingService.getMovieRating(movieId);
+            return ResponseEntity.ok(rating);
+        } catch (Exception exception) {
+            log.error("Unable to fetch movie rating from Cassandra movieUUID: {}", movieId, exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Unable to fetch movie rating: " + movieId.toString());
         }
     }
 

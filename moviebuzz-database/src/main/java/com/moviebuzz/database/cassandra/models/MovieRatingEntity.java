@@ -24,9 +24,11 @@ public class MovieRatingEntity
     private UUID movieUuid;
 
     @Counter
-    private Double totalRatings;
+    @Column
+    private Long totalRatings;
 
     @Counter
+    @Column
     private Long ratingsCounter;
 
 }
