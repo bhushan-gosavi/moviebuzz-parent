@@ -26,6 +26,13 @@
       <version>${project.version}</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>2.4.0</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
 
@@ -37,7 +44,6 @@
       </activation>
       <build>
         <plugins>
-
           <!-- alexecollins plugin to build docker images and run docker containers -->
           <plugin>
             <groupId>com.alexecollins.docker</groupId>
@@ -67,7 +73,6 @@
             </configuration>
           </plugin>
 
-
           <!-- copies the required JAR files in Target folder of moviebuzz-integration on -Pintegrate -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -89,6 +94,35 @@
               </execution>
             </executions>
           </plugin>
+
+          <!-- we don't want to run unit tests as all tests are Integration Tests, so skipping surfire plugin-->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </plugin>
+
+          <!-- we want to run Integration Tests, so adding failsafe plugin-->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.17</version>
+            <configuration>
+              <forkCount>4</forkCount>
+              <reuseForks>true</reuseForks>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
         </plugins>
       </build>
     </profile>

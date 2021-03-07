@@ -6,6 +6,7 @@ import info.archinnov.achilles.annotations.Table;
 import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
  *  With PartitionKey as User UUID
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(keyspace = "moviebuzz", table = "users")
