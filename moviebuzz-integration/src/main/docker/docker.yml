@@ -72,7 +72,7 @@ api:
   healthChecks:
     pings:
       - url: http://localhost:8081/moviebuzz/actuator/health
-        timeout: 100000
+        timeout: 500000
   tag: bgosavi/moviebuzz-integration_api:${project.version}
   links:
     - consul
@@ -91,7 +91,7 @@ processor:
   healthChecks:
     pings:
       - url: http://localhost:8082/moviebuzz/actuator/health
-        timeout: 100000
+        timeout: 500000
   tag: bgosavi/moviebuzz-integration_processor:${project.version}
   links:
     - consul

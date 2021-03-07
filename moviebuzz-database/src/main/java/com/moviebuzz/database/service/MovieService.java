@@ -39,7 +39,7 @@ public class MovieService
         movieEntityManager.crud().insert(movieEntity).execute();
         EsMovieMapping movieMapping = new EsMovieMapping();
         BeanUtils.copyProperties(movieEntity, movieMapping);
-        return elasticsearchService.indexDoc(movieEntity.getUuid().toString(), movieEntity,
+        return elasticsearchService.indexDoc(movieEntity.getUuid().toString(), movieMapping,
                 EsIndexMapping.getIndex(MovieBuzzIndex.MOVIES));
     }
 

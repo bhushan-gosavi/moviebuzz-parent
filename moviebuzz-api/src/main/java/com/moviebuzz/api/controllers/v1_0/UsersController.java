@@ -27,9 +27,10 @@ public class UsersController
     @RequestMapping(method = RequestMethod.POST, path = "/users")
     public ResponseEntity addUser(@RequestBody UserEntity userEntity)
     {
-        log.info("Adding user in db with userUuid: {}", userEntity.getUuid());
+        log.info("Adding user in db with userName: {}", userEntity.getUsername());
         try {
             userService.addUser(userEntity);
+            log.info("Added user in db with userUuid: {}", userEntity.getUuid());
             return ResponseEntity.ok().body(userEntity.getUuid());
         } catch (Exception exception) {
             log.error("Unable to add User!", exception);

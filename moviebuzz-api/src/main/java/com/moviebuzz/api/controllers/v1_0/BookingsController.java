@@ -1,13 +1,11 @@
 package com.moviebuzz.api.controllers.v1_0;
 
-import com.moviebuzz.database.cassandra.models.MovieEntity;
 import com.moviebuzz.database.cassandra.models.UserBookingEntity;
 import com.moviebuzz.database.service.BookingService;
 import com.moviebuzz.kafka.constant.Constants;
 import com.moviebuzz.kafka.model.BookingConfirmation;
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;

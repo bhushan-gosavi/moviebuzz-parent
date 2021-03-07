@@ -63,14 +63,14 @@ public class MovieEntity
 
 
 
-    public static UUID generateUUID(String movieName, Date released)
+    public static UUID generateUUID(String movieName, String description)
     {
-        return UUID.nameUUIDFromBytes((movieName + released.toString()).getBytes());
+        return UUID.nameUUIDFromBytes((movieName + description).getBytes());
     }
 
     public void setMovieUUID()
     {
-        uuid = generateUUID(name, released);
+        uuid = generateUUID(name, description);
     }
 
 

@@ -25,14 +25,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RefreshScope
-@RestController("Theaters_Controller")
+@RestController("Theatres_Controller")
 @RequestMapping("/v1.0")
-public class TheatersController
+public class TheatresController
 {
     @Autowired
     private TheatreService theatreService;
 
-    @RequestMapping(method = RequestMethod.POST, path = "/theaters")
+    @RequestMapping(value = "/theatres/{theatreId}", method = RequestMethod.GET)
+    public ResponseEntity getMovie(@PathVariable UUID theatreId) {
+        log.info("Get theatre by id: {}", theatreId);
+        try {
+            TheatreEntity entity = theatreService.getTheater(theatreId);
+            return ResponseEntity.ok(entity);
+        } catch (Exception exception) {
+            log.error("Unable to fetch Theatre from Cassandra UUID: {}", theatreId, exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Unable to fetch Theatre details: " + theatreId.toString());
+        }
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, path = "/theatres")
     public ResponseEntity addTheater(@RequestBody TheatreEntity theatreEntity)
             throws JsonProcessingException, ExecutionException, InterruptedException {
         log.info("Adding theater in db TheaterName: {}", theatreEntity.getName());
@@ -50,7 +64,7 @@ public class TheatersController
         }
     }
 
-    @RequestMapping(path = "/theaters", method = RequestMethod.GET)
+    @RequestMapping(path = "/theatres", method = RequestMethod.GET)
     public ResponseEntity getTheaters(@RequestParam(required = false) Integer from,
                                     @RequestParam(required = false) Integer size) {
         try {
@@ -63,7 +77,7 @@ public class TheatersController
         }
     }
 
-    @RequestMapping(path = "/theaters/city/{cityName}/movies/{movieId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/theatres/city/{cityName}/movies/{movieId}", method = RequestMethod.GET)
     public ResponseEntity getMovies(@RequestParam(required = false) Integer from,
                                     @RequestParam(required = false) Integer size,
                                     @RequestParam(required = false) Double lat,

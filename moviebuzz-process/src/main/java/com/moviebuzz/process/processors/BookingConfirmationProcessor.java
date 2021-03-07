@@ -20,7 +20,7 @@ public class BookingConfirmationProcessor
     @Autowired
     private BookingService bookingService;
 
-    @KafkaListener(topics = Constants.BOOKING_CONFIRMATION, clientIdPrefix = "json",
+    @KafkaListener(topics = Constants.BOOKING_CONFIRMATION, clientIdPrefix = "booking-confirmation-processor",
         containerFactory = "kafkaListenerBookingConfirmationFactory")
     public void process(ConsumerRecord<String, BookingConfirmation> consumerRecord,
         @Payload BookingConfirmation bookingConfirmation)

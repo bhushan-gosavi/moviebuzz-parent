@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BookingConfirmation
 {

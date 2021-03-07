@@ -7,7 +7,6 @@
 		<module>moviebuzz-database</module>
 		<module>moviebuzz-kafka</module>
 		<module>moviebuzz-process</module>
-		<module>moviebuzz-integration</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>

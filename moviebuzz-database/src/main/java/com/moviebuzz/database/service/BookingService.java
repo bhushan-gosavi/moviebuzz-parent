@@ -16,7 +16,7 @@ public class BookingService
 
     public void addBooking(UserBookingEntity userBooking)
     {
-        bookingsManager.crud().insert(userBooking);
+        bookingsManager.crud().insert(userBooking).execute();
     }
 
     public List<UserBookingEntity> getUserBookings(UUID userId)
