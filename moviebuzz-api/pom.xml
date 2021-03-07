@@ -9,11 +9,12 @@
 	</parent>
 
 	<artifactId>moviebuzz-api</artifactId>
-
 	<name>moviebuzz-api</name>
 	<description>API support for Moviebuzz</description>
+
 	<properties>
 		<java.version>1.8</java.version>
+		<springdoc.version>1.5.2</springdoc.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -44,7 +45,23 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
-	</dependencies>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-data-rest</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+    </dependency>
+
+  </dependencies>
 
 	<build>
 		<plugins>

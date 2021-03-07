@@ -3,8 +3,10 @@ package com.moviebuzz.database.cassandra.models;
 import info.archinnov.achilles.annotations.Column;
 import info.archinnov.achilles.annotations.PartitionKey;
 import info.archinnov.achilles.annotations.Table;
+import java.util.Date;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
  *  With PartitionKey as User UUID
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(keyspace = "moviebuzz", table = "users")
@@ -30,5 +33,18 @@ public class UserEntity
 
     @Column
     private String email;
+
+    @Column
+    private Long mobileNumber;
+
+    public static UUID generateUUID(String email)
+    {
+        return UUID.nameUUIDFromBytes(email.getBytes());
+    }
+
+    public void setUserUUID()
+    {
+        uuid = generateUUID(email);
+    }
 
 }

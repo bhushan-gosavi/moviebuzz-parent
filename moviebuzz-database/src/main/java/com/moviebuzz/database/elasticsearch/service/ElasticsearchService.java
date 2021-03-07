@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.moviebuzz.database.elasticsearch.index.EsIndex;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -15,7 +16,10 @@ import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.common.geo.GeoPoint;
+import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -56,12 +60,52 @@ public class ElasticsearchService
         return response.status();
     }
 
-    public <T> List<T> getAllDocs(EsIndex esIndex, Integer from, Integer size,
-        String sortBy, SortOrder sortOrder, Class<T> classType)
+    public <T> List<T> getAllDocs(EsIndex esIndex,
+                                  Map<String, Object> matchMap,
+                                  Map<String, List<Object>> termsMap,
+                                  GeoPoint location,
+                                  Integer from,
+                                  Integer size, String sortBy, SortOrder sortOrder, Class<T> classType)
     {
         SearchRequest searchRequest = new SearchRequest();
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+
+        if(Objects.isNull(matchMap) && Objects.isNull(termsMap) && Objects.isNull(location))
+        {
+            searchSourceBuilder.query(QueryBuilders.matchAllQuery());
+        }
+        else
+        {
+            BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery();
+
+            if(Objects.nonNull(matchMap))
+            {
+                for(String match: matchMap.keySet())
+                {
+                    queryBuilder = queryBuilder
+                            .must(QueryBuilders.matchQuery(match, matchMap.get(match)));
+                }
+            }
+
+            if(Objects.nonNull(termsMap))
+            {
+                for(String term: termsMap.keySet())
+                {
+                    queryBuilder = queryBuilder
+                            .must(QueryBuilders.termsQuery(term, termsMap.get(term)));
+                }
+            }
+
+            if (Objects.nonNull(location)) {
+                queryBuilder = queryBuilder
+                        .filter(QueryBuilders.geoDistanceQuery("location")
+                                .point(location).distance(100d, DistanceUnit.KILOMETERS));
+            }
+
+            searchSourceBuilder.query(queryBuilder);
+        }
+
+
 
         if(Objects.nonNull(sortBy))
         {

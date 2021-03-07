@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: moviebuzz-processor
+  kafka:
+    bootstrap-servers: mkafka:9092
+    consumer:
+      group-id: moviebuzz-group
+      auto-offset-reset: earliest
+
+
+server:
+  port: 8082
+  servlet:
+    context-path: /moviebuzz
+
+
+kafka:
+  topics:
+    bookingConfirmation:
+      partitions: 3
+      replicas: 1
+      consumerThreads: 3
+    userReviews:
+      partitions: 3
+      replicas: 1
+      consumerThreads: 3
+
+cassandra:
+  host: cassandra
+  port: 9042
+  creds:
+    username: ""
+    password: ""
+  cluster:
+    name: "Test Cluster"
+    generateSchema: true
+    connections:
+      pooling:
+        local:
+          core: 5
+          max: 10
+          maxConnectionsPerHost: 3
+        remote:
+          core: 5
+          max: 10
+          maxConnectionsPerHost: 3
+  keyspace:
+    name: moviebuzz
+    readConsistency: LOCAL_QUORUM
+    writeConsistency: LOCAL_QUORUM
+
+elasticsearch:
+  hosts: "elasticsearch:9300"
+  client.transport.ping_timeout: 10s
+  client.transport.nodes_sampler_interval: 10s
+  cluster:
+    name: "moviebuzz-cluster"
+
+cache:
+  movieRatings:
+    size: 500
+    expireAfterHours: 1
+
+logging:
+  level:
+    com.moviebuzz: INFO
+    org.elasticsearch.transport.TransportService: ERROR

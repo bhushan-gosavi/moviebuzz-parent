@@ -20,6 +20,10 @@ kafka:
       partitions: 3
       replicas: 1
       consumerThreads: 3
+    userReviews:
+      partitions: 3
+      replicas: 1
+      consumerThreads: 3
 
 cassandra:
   host: cassandra
@@ -52,6 +56,11 @@ elasticsearch:
   cluster:
     name: "moviebuzz-cluster"
 
+
+cache:
+  movieRatings:
+    size: 500
+    expireAfterHours: 1
 
 
 logging:

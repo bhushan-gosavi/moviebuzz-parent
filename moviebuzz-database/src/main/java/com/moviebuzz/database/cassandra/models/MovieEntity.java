@@ -1,6 +1,11 @@
 package com.moviebuzz.database.cassandra.models;
 
+import com.moviebuzz.database.cassandra.enums.Language;
+import com.moviebuzz.database.cassandra.enums.MovieGenres;
+import com.moviebuzz.database.cassandra.models.udt.Person;
 import info.archinnov.achilles.annotations.Column;
+import info.archinnov.achilles.annotations.Enumerated;
+import info.archinnov.achilles.annotations.Frozen;
 import info.archinnov.achilles.annotations.PartitionKey;
 import info.archinnov.achilles.annotations.Table;
 import java.util.Date;
@@ -30,19 +35,43 @@ public class MovieEntity
     private String name;
 
     @Column
-    private Set<String> actors;
-
-    @Column
-    private Date releasedDate;
-
-    @Column
     private String description;
 
     @Column
-    private Float averageRating;
+    private Date released;
 
     @Column
-    private Integer likes;
+    private Boolean isBookingActive;
+
+    @Column
+    private Set<@Frozen Person> actors;
+
+    @Column
+    private Set<@Frozen Person> crew;
+
+    @Column
+    private Set<@Enumerated MovieGenres> genres;
+
+    @Column
+    private Set<@Enumerated Language> languages;
+
+    @Column
+    private String imageUrl;
+
+    @Column
+    private String certificate;
+
+
+
+    public static UUID generateUUID(String movieName, String description)
+    {
+        return UUID.nameUUIDFromBytes((movieName + description).getBytes());
+    }
+
+    public void setMovieUUID()
+    {
+        uuid = generateUUID(name, description);
+    }
 
 
 }

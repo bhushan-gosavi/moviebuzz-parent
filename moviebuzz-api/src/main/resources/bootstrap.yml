@@ -17,6 +17,7 @@ spring:
         fail-fast: true
         prefix: moviebuzz-api/develop
 
+
 logging:
   level:
     com.moviebuzz: INFO

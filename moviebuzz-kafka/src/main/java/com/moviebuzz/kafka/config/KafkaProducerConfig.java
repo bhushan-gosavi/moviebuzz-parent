@@ -1,4 +1,4 @@
-package com.moviebuzz.kafka.config.topics;
+package com.moviebuzz.kafka.config;
 
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -17,23 +17,18 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
 @Configuration
-public class BookingConfirmationProducer {
+public class KafkaProducerConfig
+{
     @Autowired
     private KafkaProperties kafkaProperties;
-
-    @Value("${kafka.topics.bookingConfirmation.partitions}")
-    private Integer bookingConfirmationPartitions;
-
-    @Value("${kafka.topics.bookingConfirmation.replicas}")
-    private Short bookingConfirmationReplicas;
 
     @Bean
     public Map<String, Object> producerConfigs() {
         Map<String, Object> props =
                 new HashMap<>(kafkaProperties.buildProducerProperties());
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
+        props.put(org.apache.kafka.clients.producer.ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+        props.put(org.apache.kafka.clients.producer.ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
                 JsonSerializer.class);
         return props;
     }
@@ -46,10 +41,5 @@ public class BookingConfirmationProducer {
     @Bean
     public KafkaTemplate<String, Object> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
-    }
-
-    @Bean
-    public NewTopic bookingConfirmationTopic() {
-        return new NewTopic(Constants.BOOKING_CONFIRMATION, bookingConfirmationPartitions, bookingConfirmationReplicas);
     }
 }

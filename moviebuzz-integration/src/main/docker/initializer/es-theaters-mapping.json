@@ -1,0 +1,51 @@
+{
+  "mappings":
+  {
+    "theaters":
+    {
+      "properties":
+      {
+        "uuid": {
+          "type": "keyword"
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "city": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword"
+            }
+          }
+        },
+        "location": {
+          "type": "geo_point"
+        },
+        "activeMovies": {
+          "type": "nested",
+          "include_in_parent": true,
+          "properties": {
+            "uuid": {
+              "type": "keyword"
+            },
+            "name": {
+              "type": "text",
+              "fields": {
+                "keyword": {
+                  "type": "keyword"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

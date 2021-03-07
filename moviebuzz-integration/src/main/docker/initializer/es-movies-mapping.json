@@ -12,19 +12,21 @@
           "type": "text",
           "fields": {
             "keyword": {
-              "type": "keyword",
-              "ignore_above": 256
+              "type": "keyword"
             }
           }
         },
-        "actors": {
+        "isBookingActive": {
+          "type": "boolean"
+        },
+        "released": {
+          "type": "date"
+        },
+        "imageUrl": {
           "type": "text"
         },
-        "description": {
-          "type": "text"
-        },
-        "averageRating": {
-          "type": "float"
+        "runningCities": {
+          "type": "keyword"
         }
       }
     }

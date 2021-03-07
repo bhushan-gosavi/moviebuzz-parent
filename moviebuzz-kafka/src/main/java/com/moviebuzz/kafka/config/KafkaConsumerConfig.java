@@ -1,6 +1,5 @@
-package com.moviebuzz.kafka.config.topics;
+package com.moviebuzz.kafka.config;
 
-import org.elasticsearch.common.geo.GeoHashUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
@@ -13,13 +12,16 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
 @Configuration
-public class BookingConfirmationConsumer
+public class KafkaConsumerConfig
 {
     @Autowired
     private KafkaProperties kafkaProperties;
 
     @Value("${kafka.topics.bookingConfirmation.consumerThreads}")
     private Integer bookingConfirmationConsumerThreads;
+
+    @Value("${kafka.topics.userReviews.consumerThreads}")
+    private Integer userReviewConsumerThreads;
 
     @Bean
     public ConsumerFactory<String, Object> consumerFactory() {
@@ -36,6 +38,15 @@ public class BookingConfirmationConsumer
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setConcurrency(bookingConfirmationConsumerThreads);
+        return factory;
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerUserReviewFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, Object> factory =
+            new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        factory.setConcurrency(userReviewConsumerThreads);
         return factory;
     }
 }

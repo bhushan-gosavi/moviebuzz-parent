@@ -1,6 +1,7 @@
-package com.moviebuzz.database.elasticsearch;
+package com.moviebuzz.database.initialize;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapter;
@@ -38,7 +39,9 @@ public class BeanInitializer
     @Bean
     public ObjectMapper getObjectMapper()
     {
-        return new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        return mapper;
     }
 
     @Bean

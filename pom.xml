@@ -5,8 +5,8 @@
 	<modules>
 		<module>moviebuzz-api</module>
 		<module>moviebuzz-database</module>
-    <module>moviebuzz-processor</module>
 		<module>moviebuzz-kafka</module>
+		<module>moviebuzz-process</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
