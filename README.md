@@ -5,6 +5,7 @@ Moviebuzz is a highly scalable Movie Reviews and  Movie Ticket Booking platform 
 
  - Horizontally scalable
  - Highly Concurrent
+ - Microservice Architecture
  - Containerized Application
  - Production Grade Code with Integration Tests using Docker Containers
  
