@@ -32,9 +32,9 @@ Moviebuzz is a highly scalable Movie Reviews and  Movie Ticket Booking platform 
 		 
 	 - After running above command, docker images will be created on host machine.
 	 
-		 `bgosavi/moviebuzz-integration_kafka-processor                                      1.0.0.0-SNAPSHOT`
+		 `/moviebuzz-integration_kafka-processor                                      1.0.0.0-SNAPSHOT`
 	 
-		 `bgosavi/moviebuzz-integration_api                                            1.0.0.0-SNAPSHOT`
+		 `/moviebuzz-integration_api                                            1.0.0.0-SNAPSHOT`
 	 
 	 
 	 - All the required Container Stack will be up on your local machine to run integration tests.
