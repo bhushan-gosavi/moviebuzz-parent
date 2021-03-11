@@ -30,7 +30,7 @@ Moviebuzz is a highly scalable Movie Reviews and  Movie Ticket Booking platform 
 	 
  - Run maven build using 'integrate' profile to launch docker containers and run Integration Tests
  - 
-	 `mvn clean install -Pintegration`
+	 `mvn clean install -Pintegrate`
 		 
 	 - After running above command, docker images will be created on host machine.
 	 
