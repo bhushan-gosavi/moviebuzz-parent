@@ -1,5 +1,5 @@
 # Moviebuzz
-Moviebuzz is a highly scalable Movie Reviews and  Movie Ticket Booking platform created for learning purpose with Production Grade Code. 
+Moviebuzz is a highly scalable Movie Reviews and  Movie Ticket Booking platform created for learning purpose. 
 
 # Platform Features
 
