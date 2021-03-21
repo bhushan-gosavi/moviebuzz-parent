@@ -1,5 +1,6 @@
 # Moviebuzz
 Moviebuzz is a highly scalable Movie Reviews and  Movie Ticket Booking platform created for learning purpose. 
+Blog Link: https://bhushan-gosavi.medium.com/moviebuzz-system-design-coding-end-to-end-system-from-scratch-606dbd66e568
 
 # Platform Features
 
@@ -41,4 +42,12 @@ Moviebuzz is a highly scalable Movie Reviews and  Movie Ticket Booking platform 
 	 
 	 - All the required Container Stack will be up on your local machine to run integration tests.
 	 - If all the integration tests are successful, Build will be successful otherwise build will fail.
+
+ # Contributing
+ Feel free to Fork a repo and submit a PR.
+You can add support for following pending Tasks. 
+ - Adding APIs to delete existing Entities from ElasticSearch and Cassandra
+ - Support for ElasticSeach update, delete Query in ElasticsearchService
+ - Integrating SQL database for real time Bookings
+ - SQL database schema
  
