@@ -1,5 +1,6 @@
 # Moviebuzz
 Moviebuzz is a highly scalable Movie Reviews and  Movie Ticket Booking platform created for learning purpose. 
+
 Blog Link: https://bhushan-gosavi.medium.com/moviebuzz-system-design-coding-end-to-end-system-from-scratch-606dbd66e568
 
 # Platform Features
