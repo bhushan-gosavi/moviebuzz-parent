@@ -33,7 +33,7 @@ public class UserReviewsProcessor
         {
             MovieReviewEntity reviewEntity = MovieReviewEntity.builder()
                 .movieUuid(userReview.getMovieUuid())
-                .userUuid(userReview.getUserUuid())
+                .username(userReview.getUsername())
                 .review(userReview.getReview())
                 .date(userReview.getDate())
                 .rating(userReview.getRating())

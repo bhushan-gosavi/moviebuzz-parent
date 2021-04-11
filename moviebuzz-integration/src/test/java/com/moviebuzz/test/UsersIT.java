@@ -21,7 +21,7 @@ public class UsersIT extends TestBaseIT
         UUID uuid = UUID.randomUUID();
         String email = uuid.toString() + "@gmail.com";
         UserEntity userEntity = UserEntity.builder()
-            .uuid(uuid)
+            .username(uuid.toString())
             .name("dummy-user")
             .email(email)
             .build();
@@ -32,12 +32,11 @@ public class UsersIT extends TestBaseIT
             .post("/moviebuzz/v1.0/users")
             .then().statusCode(200);
 
-        UUID generatedUserId = UUID.nameUUIDFromBytes(email.getBytes());
         Thread.sleep(5_000);
-        String response = api().get("/moviebuzz/v1.0/users/" + generatedUserId.toString()).asString();
+        String response = api().get("/moviebuzz/v1.0/users/" + uuid.toString()).asString();
         UserEntity dbUserEntity = objectMapper.readValue(response, UserEntity.class);
         Assert.assertNotNull(dbUserEntity);
-        Assert.assertEquals(generatedUserId, dbUserEntity.getUuid());
+        Assert.assertEquals(uuid.toString(), dbUserEntity.getUsername());
     }
 
 

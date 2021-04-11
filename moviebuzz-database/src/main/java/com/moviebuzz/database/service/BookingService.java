@@ -19,10 +19,10 @@ public class BookingService
         bookingsManager.crud().insert(userBooking).execute();
     }
 
-    public List<UserBookingEntity> getUserBookings(UUID userId)
+    public List<UserBookingEntity> getUserBookings(String username)
     {
         return bookingsManager.dsl().select().allColumns_FromBaseTable()
-            .where().userId().Eq(userId)
+            .where().username().Eq(username)
             .orderByBookingIdDescending()
             .getList();
     }

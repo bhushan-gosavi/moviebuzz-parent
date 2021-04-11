@@ -34,7 +34,7 @@ public class BookingConfirmationProcessor
             bookingService.addBooking(userBookingEntity);
 
             log.info("Booking details stored in Cassandra! userId:{} bookingId:{}",
-                bookingConfirmation.getUserId(), bookingConfirmation.getBookingId());
+                bookingConfirmation.getMovieName(), bookingConfirmation.getBookingId());
 
         }
         catch (Exception exception)

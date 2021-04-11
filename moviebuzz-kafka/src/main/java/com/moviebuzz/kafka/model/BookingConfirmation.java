@@ -14,8 +14,7 @@ public class BookingConfirmation
 {
     private UUID bookingId;
 
-    private UUID userId;
-    private String userName;
+    private String username;
 
     private String userEmail;
     private Long userMobileNumber;

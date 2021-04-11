@@ -99,3 +99,21 @@ processor:
     - elasticsearch
     - mzookeeper
     - mkafka
+
+userservice:
+  packaging:
+    add:
+      - target\dependency\moviebuzz-user-service.jar
+  ports:
+    - 8083 8083
+
+  healthChecks:
+    logPatterns:
+      - pattern: Started MovieBuzzUsersService
+        timeout: 1000000
+
+  tag: bgosavi/moviebuzz-integration_user_service:${project.version}
+  links:
+    - consul
+    - cassandra
+    - elasticsearch

@@ -38,8 +38,8 @@ public class BookingsController
     {
         try
         {
-            log.info("Marking Booking as Confirmed! BookingId:{} userId:{}",
-                bookingConfirmation.getBookingId(), bookingConfirmation.getUserId());
+            log.info("Marking Booking as Confirmed! BookingId:{} username:{}",
+                bookingConfirmation.getBookingId(), bookingConfirmation.getUsername());
 
             ListenableFuture<SendResult<String, Object>> future = kafkaTemplate
                 .send(Constants.BOOKING_CONFIRMATION, UUID.randomUUID().toString(), bookingConfirmation);
@@ -54,18 +54,18 @@ public class BookingsController
         }
     }
 
-    @RequestMapping(value = "/bookings/{userId}", method = RequestMethod.GET)
-    public ResponseEntity getUserBookings(@PathVariable UUID userId) {
-        log.info("Get Bookings by userId: {}", userId);
+    @RequestMapping(value = "/bookings/{userName}", method = RequestMethod.GET)
+    public ResponseEntity getUserBookings(@PathVariable String userName) {
+        log.info("Get Bookings by userId: {}", userName);
         try {
 
-            List<UserBookingEntity> userBookings = bookingService.getUserBookings(userId);
+            List<UserBookingEntity> userBookings = bookingService.getUserBookings(userName);
             return ResponseEntity.ok(userBookings);
 
         } catch (Exception exception) {
-            log.error("Unable to fetch user Bookings from Cassandra for userId: {}", userId, exception);
+            log.error("Unable to fetch user Bookings from Cassandra for userName: {}", userName, exception);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Unable to fetch user Bookings from Cassandra for userId: " + userId);
+                .body("Unable to fetch user Bookings from Cassandra for userName: " + userName);
         }
     }
 

@@ -30,25 +30,25 @@ public class UsersController
         log.info("Adding user in db with userName: {}", userEntity.getUsername());
         try {
             userService.addUser(userEntity);
-            log.info("Added user in db with userUuid: {}", userEntity.getUuid());
-            return ResponseEntity.ok().body(userEntity.getUuid());
+            log.info("Added user in db with username: {}", userEntity.getUsername());
+            return ResponseEntity.ok().body(userEntity.getUsername());
         } catch (Exception exception) {
             log.error("Unable to add User!", exception);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Unable to add User: " + userEntity.getUuid().toString());
+                    .body("Unable to add User: " + userEntity.getUsername());
         }
     }
 
-    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
-    public ResponseEntity getMovie(@PathVariable UUID userId) {
-        log.info("Get user by id: {}", userId);
+    @RequestMapping(value = "/users/{userName}", method = RequestMethod.GET)
+    public ResponseEntity getUser(@PathVariable String userName) {
+        log.info("Get user by id: {}", userName);
         try {
-            UserEntity entity = userService.getUser(userId);
+            UserEntity entity = userService.getUser(userName);
             return ResponseEntity.ok(entity);
         } catch (Exception exception) {
-            log.error("Unable to fetch user from Cassandra UUID: {}", userId, exception);
+            log.error("Unable to fetch user from Cassandra UUID: {}", userName, exception);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Unable to fetch user details: " + userId.toString());
+                    .body("Unable to fetch user details: " + userName.toString());
         }
     }
 }

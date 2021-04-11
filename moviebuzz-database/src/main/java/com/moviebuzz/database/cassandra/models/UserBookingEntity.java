@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 public class UserBookingEntity
 {
     @PartitionKey
-    private UUID userId;
+    private String username;
 
     @ClusteringColumn
     private UUID bookingId;
