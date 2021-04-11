@@ -4,6 +4,7 @@ import com.moviebuzz.users.filter.JwtRequestFilter;
 import com.moviebuzz.users.service.UserAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -33,10 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 
         httpSecurity.csrf().disable()
             .authorizeRequests()
-            .antMatchers("/v1.0/authenticate*")
-            .permitAll()
-            .antMatchers("/v1.0/createuser*")
-            .hasAuthority("ADMIN")
+            .antMatchers("/v1.0/user/authenticate").permitAll()
+            .antMatchers(HttpMethod.POST, "/v1.0/user").hasAuthority("ADMIN")
             .and()
             .authorizeRequests()
             .anyRequest()
