@@ -18,11 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1.0")
 public class MovieFrontController
 {
-    @RequestMapping(path = "/hello")
-    public String test()
-    {
-        return "Bhushan";
-    }
 
     @Autowired
     private APIService apiService;
