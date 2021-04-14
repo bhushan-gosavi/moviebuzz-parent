@@ -1,0 +1,25 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: moviebuzz-user-service
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+        format: files
+        fail-fast: true
+        prefix: moviebuzz-user-service/develop
+
+
+logging:
+  level:
+    com.moviebuzz: INFO
+    org.elasticsearch.transport.TransportService: ERROR
+
