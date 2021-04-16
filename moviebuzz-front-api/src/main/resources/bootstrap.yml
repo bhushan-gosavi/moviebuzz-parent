@@ -2,7 +2,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   application:
-    name: moviebuzz-user-service
+    name: moviebuzz-front-api
   servlet:
     multipart:
       max-file-size: 500MB
@@ -15,7 +15,7 @@ spring:
         enabled: true
         format: files
         fail-fast: true
-        prefix: moviebuzz-user-service/develop
+        prefix: moviebuzz-front-api/develop
 
 
 logging:

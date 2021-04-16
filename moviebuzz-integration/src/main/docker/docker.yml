@@ -117,3 +117,22 @@ userservice:
     - consul
     - cassandra
     - elasticsearch
+
+frontapi:
+  packaging:
+    add:
+      - target\dependency\moviebuzz-front-api.jar
+  ports:
+    - 8084 8084
+
+  healthChecks:
+    logPatterns:
+      - pattern: Started MovieBuzzFrontAPI
+        timeout: 1000000
+
+  tag: bgosavi/moviebuzz-integration_front_api:${project.version}
+  links:
+    - consul
+    - cassandra
+    - elasticsearch
+

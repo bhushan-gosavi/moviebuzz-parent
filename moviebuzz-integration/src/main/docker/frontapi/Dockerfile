@@ -2,7 +2,7 @@ FROM java:8
 
 WORKDIR /opt
 
-ADD moviebuzz-user-service.jar /opt/app.jar
+ADD moviebuzz-front-api.jar /opt/app.jar
 
 ADD run.sh /opt
 
@@ -12,4 +12,4 @@ RUN chmod +x /opt/run.sh
 
 ENTRYPOINT "/opt/run.sh"
 
-EXPOSE 8083
+EXPOSE 8084

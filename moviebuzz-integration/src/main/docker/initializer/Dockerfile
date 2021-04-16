@@ -6,6 +6,7 @@ ADD initialize.sh /
 ADD moviebuzz-api-develop.yml /
 ADD moviebuzz-processor-develop.yml /
 ADD moviebuzz-user-service-develop.yml /
+ADD moviebuzz-front-api-develop.yml /
 ADD es-movies-mapping.json /
 ADD es-theaters-mapping.json /
 
