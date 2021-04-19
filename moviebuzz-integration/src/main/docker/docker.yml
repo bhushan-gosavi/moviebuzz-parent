@@ -66,6 +66,7 @@ api:
   packaging:
     add:
       - target/dependency/moviebuzz-api.jar
+      - src/main/resources/AppServerAgent.zip
   ports:
     - 8081 8081
 
@@ -85,6 +86,7 @@ processor:
   packaging:
     add:
       - target/dependency/moviebuzz-process.jar
+      - src/main/resources/AppServerAgent.zip
   ports:
     - 8082 8082
 
@@ -103,7 +105,8 @@ processor:
 userservice:
   packaging:
     add:
-      - target\dependency\moviebuzz-user-service.jar
+      - target/dependency/moviebuzz-user-service.jar
+      - src/main/resources/AppServerAgent.zip
   ports:
     - 8083 8083
 
@@ -122,6 +125,7 @@ frontapi:
   packaging:
     add:
       - target\dependency\moviebuzz-front-api.jar
+      - src/main/resources/AppServerAgent.zip
   ports:
     - 8084 8084
 
@@ -136,3 +140,20 @@ frontapi:
     - cassandra
     - elasticsearch
 
+gateway:
+  packaging:
+    add:
+      - target\dependency\moviebuzz-gateway.jar
+      - src/main/resources/AppServerAgent.zip
+  ports:
+    - 9090 9090
+
+  healthChecks:
+    logPatterns:
+      - pattern: Started MoviebuzzGatewayApplication
+        timeout: 1000000
+
+  tag: bgosavi/moviebuzz-integration_gateway:${project.version}
+  links:
+    - userservice
+    - frontapi
