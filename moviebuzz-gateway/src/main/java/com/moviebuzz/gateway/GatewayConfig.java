@@ -19,10 +19,6 @@ public class GatewayConfig
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
             .route(p -> p
-                .path("/get*")
-                .filters(f -> f.addRequestHeader("Hello", "World"))
-                .uri("http://httpbin.org:80"))
-            .route(p -> p
                 .path("/moviebuzz/v1.0/user/**")
                 .uri(userServiceUrl))
             .route(p -> p

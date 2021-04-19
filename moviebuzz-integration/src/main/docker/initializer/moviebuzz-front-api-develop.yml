@@ -1,10 +1,10 @@
 spring:
   application:
-    name: moviebuzz-user-service
+    name: moviebuzz-front-api
 
 
 server:
-  port: 8083
+  port: 8084
   servlet:
     context-path: /moviebuzz
 
