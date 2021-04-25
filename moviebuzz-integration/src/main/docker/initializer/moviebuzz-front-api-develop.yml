@@ -46,7 +46,7 @@ cache:
     size: 500
     expireAfterHours: 1
 
-moviebuzz.api.url: "api:8081"
+moviebuzz.api.url: "http://api:8081"
 
 logging:
   level:

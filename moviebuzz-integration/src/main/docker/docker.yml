@@ -139,6 +139,7 @@ frontapi:
     - consul
     - cassandra
     - elasticsearch
+    - api
 
 gateway:
   packaging:
