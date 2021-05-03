@@ -37,7 +37,7 @@ public class ReviewsController
         try
         {
             log.info("Publishing Review by user: {} for movie: {}",
-                review.getUserUuid(), review.getMovieUuid());
+                review.getUsername(), review.getMovieUuid());
 
             ListenableFuture<SendResult<String, Object>> future = kafkaTemplate
                     .send(Constants.USER_REVIEWS, UUID.randomUUID().toString(), review);

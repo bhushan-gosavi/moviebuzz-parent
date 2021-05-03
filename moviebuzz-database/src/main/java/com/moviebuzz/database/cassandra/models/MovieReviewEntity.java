@@ -29,7 +29,7 @@ public class MovieReviewEntity
     private Date date;
 
     @ClusteringColumn(2)
-    private UUID userUuid;
+    private String username;
 
     @Column
     private String review;

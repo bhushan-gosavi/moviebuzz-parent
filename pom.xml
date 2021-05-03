@@ -7,7 +7,9 @@
 		<module>moviebuzz-database</module>
 		<module>moviebuzz-kafka</module>
 		<module>moviebuzz-process</module>
-	</modules>
+    <module>moviebuzz-user-service</module>
+    <module>moviebuzz-front-api</module>
+  </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>

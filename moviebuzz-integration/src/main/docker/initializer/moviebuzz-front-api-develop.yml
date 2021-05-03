@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: moviebuzz-front-api
+
+
+server:
+  port: 8084
+  servlet:
+    context-path: /moviebuzz
+
+
+cassandra:
+  host: cassandra
+  port: 9042
+  creds:
+    username: ""
+    password: ""
+  cluster:
+    name: "Test Cluster"
+    generateSchema: true
+    connections:
+      pooling:
+        local:
+          core: 5
+          max: 10
+          maxConnectionsPerHost: 3
+        remote:
+          core: 5
+          max: 10
+          maxConnectionsPerHost: 3
+  keyspace:
+    name: moviebuzz
+    readConsistency: LOCAL_QUORUM
+    writeConsistency: LOCAL_QUORUM
+
+elasticsearch:
+  hosts: "elasticsearch:9300"
+  client.transport.ping_timeout: 10s
+  client.transport.nodes_sampler_interval: 10s
+  cluster:
+    name: "moviebuzz-cluster"
+
+
+cache:
+  movieRatings:
+    size: 500
+    expireAfterHours: 1
+
+moviebuzz.api.url: "http://api:8081"
+
+logging:
+  level:
+    com.moviebuzz: INFO
+    org.elasticsearch.transport.TransportService: ERROR
+

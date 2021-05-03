@@ -53,12 +53,12 @@ public class MoviesIT extends TestBaseIT
     public void publishReview() throws JsonProcessingException, InterruptedException
     {
         UUID movieId = UUID.randomUUID();
-        UUID userId = UUID.randomUUID();
+        String userName = "test-user";
         String review = "Best Movie";
 
 
         UserReview userReview = new UserReview();
-        userReview.setUserUuid(userId);
+        userReview.setUsername(userName);
         userReview.setMovieUuid(movieId);
         userReview.setDate(new Date());
         userReview.setReview(review);

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserReview
 {
-    private UUID userUuid;
+    private String username;
     private UUID movieUuid;
     private String review;
     private Long rating;

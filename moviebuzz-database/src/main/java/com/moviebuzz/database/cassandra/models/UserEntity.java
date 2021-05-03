@@ -1,9 +1,11 @@
 package com.moviebuzz.database.cassandra.models;
 
 import info.archinnov.achilles.annotations.Column;
+import info.archinnov.achilles.annotations.Frozen;
 import info.archinnov.achilles.annotations.PartitionKey;
 import info.archinnov.achilles.annotations.Table;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,28 +25,34 @@ public class UserEntity
 {
     @PartitionKey(1)
     @Column
-    private UUID uuid;
-
-    @Column
     private String username;
-
-    @Column
-    private String name;
 
     @Column
     private String email;
 
     @Column
+    private String name;
+
+    @Column
+    // password will be stored in encoded form
+    private String encodedPassword;
+
+    @Column
     private Long mobileNumber;
 
-    public static UUID generateUUID(String email)
-    {
-        return UUID.nameUUIDFromBytes(email.getBytes());
-    }
+    @Column
+    private Boolean isAccountNonExpired;
 
-    public void setUserUUID()
-    {
-        uuid = generateUUID(email);
-    }
+    @Column
+    private Boolean isAccountNonLocked;
+
+    @Column
+    private Boolean isCredentialsNonExpired;
+
+    @Column
+    private Boolean isEnabled;
+
+    @Column
+    private Set<@Frozen String> roles;
 
 }

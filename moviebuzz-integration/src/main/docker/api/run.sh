@@ -5,6 +5,10 @@
 
 JAVAOPTS="-Dspring.cloud.consul.host=$CONSUL_HOST \
   -Dspring.cloud.consul.port=$CONSUL_PORT_ADDR \
+  -javaagent:/opt/appd/javaagent.jar \
+  -Dappdynamics.agent.nodeName=moviebuzz-api-dockerHost \
+  -Dappdynamics.agent.applicationName=moviebuzz \
+  -Dappdynamics.agent.tierName=moviebuzz-api
   $JAVA_OPTS"
 
 echo $JAVAOPTS
