@@ -9,6 +9,8 @@ Blog Link: https://bhushan-gosavi.medium.com/moviebuzz-system-design-coding-end-
  - Highly Concurrent
  - Microservice Architecture
  - Containerized Application
+ - API Authentication and Authorization
+ - Real-time Service Monitoring and Alerts using Appdynamics
  - Production Grade Code with Integration Tests using Docker Containers
  
  # Technologies
